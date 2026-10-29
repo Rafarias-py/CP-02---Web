@@ -19,21 +19,34 @@ function lerTexto(mensagem) {
     return valor.trim();
 }
 
-// Pede um número e repete até estar dentro do intervalo permitido
+// Pede um número inteiro e repete até estar dentro do intervalo permitido
 function lerNumero(mensagem, minimo, maximo) {
-    let valor = Number(prompt(mensagem));
+    let entrada = prompt(mensagem);
+    let valor = Number(entrada);
 
-    while (isNaN(valor) || valor < minimo || valor > maximo) {
-        alert("Digite um número entre " + minimo + " e " + maximo + ".");
-        valor = Number(prompt(mensagem));
+    while (
+        entrada === null ||
+        entrada.trim() === "" ||
+        !Number.isInteger(valor) ||
+        valor < minimo ||
+        valor > maximo
+    ) {
+        alert(
+            "Digite um número inteiro entre " +
+            minimo +
+            " e " +
+            maximo +
+            "."
+        );
+        entrada = prompt(mensagem);
+        valor = Number(entrada);
     }
 
     return valor;
 }
 
 // -----------------------------------------------------
-// FUNÇÕES DE ANÁLISE DO VINHO
-// -----------------------------------------------------
+
 
 // Retorna true se o estoque for menor que 5
 function estoqueBaixo(quantidade) {
@@ -55,9 +68,6 @@ function classificarVinho(safra) {
 }
 
 // -----------------------------------------------------
-// FUNÇÃO DE EXIBIÇÃO
-// -----------------------------------------------------
-
 // Mostra os dados do vinho no console e avisa por alert()
 function mostrarVinho(nome, safra, quantidade, classificacao, baixo) {
     console.log("=======================================");
@@ -72,31 +82,16 @@ function mostrarVinho(nome, safra, quantidade, classificacao, baixo) {
 
     console.log("=======================================");
 
-    alert("Vinho \"" + nome + "\" cadastrado! Veja os detalhes no console.");
+    alert(
+        "Vinho \"" + nome + "\" cadastrado! Veja os detalhes no console."
+    );
 }
 
 // -----------------------------------------------------
 // PROGRAMA PRINCIPAL
-// -----------------------------------------------------
-
-// Contadores e controle (variáveis globais do programa)
-let totalCadastros = 0;
-let totalEstoqueBaixo = 0;
-let nomeMaisAntigo = "";
-let safraMaisAntiga = 9999;
-let continuar = true;
-const LIMITE_VINHOS = 5;
-
-// Uma variável para cada informação de cada vinho (sem arrays)
-let nome1, safra1, quant1;
-let nome2, safra2, quant2;
-let nome3, safra3, quant3;
-let nome4, safra4, quant4;
-let nome5, safra5, quant5;
 
 // Repete enquanto o usuário quiser cadastrar e houver espaço
 while (continuar && totalCadastros < LIMITE_VINHOS) {
-
     // Variáveis locais deste bloco (existem só dentro do laço)
     let nome = lerTexto("Nome do vinho:");
     let safra = lerNumero("Safra (ano):", 1900, new Date().getFullYear());
@@ -107,15 +102,25 @@ while (continuar && totalCadastros < LIMITE_VINHOS) {
 
     // Guarda nas variáveis numeradas, de acordo com o número do cadastro
     if (totalCadastros === 1) {
-        nome1 = nome; safra1 = safra; quant1 = quant;
+        nome1 = nome;
+        safra1 = safra;
+        quant1 = quant;
     } else if (totalCadastros === 2) {
-        nome2 = nome; safra2 = safra; quant2 = quant;
+        nome2 = nome;
+        safra2 = safra;
+        quant2 = quant;
     } else if (totalCadastros === 3) {
-        nome3 = nome; safra3 = safra; quant3 = quant;
+        nome3 = nome;
+        safra3 = safra;
+        quant3 = quant;
     } else if (totalCadastros === 4) {
-        nome4 = nome; safra4 = safra; quant4 = quant;
+        nome4 = nome;
+        safra4 = safra;
+        quant4 = quant;
     } else if (totalCadastros === 5) {
-        nome5 = nome; safra5 = safra; quant5 = quant;
+        nome5 = nome;
+        safra5 = safra;
+        quant5 = quant;
     }
 
     // Verifica estoque baixo e atualiza o contador
@@ -147,7 +152,15 @@ while (continuar && totalCadastros < LIMITE_VINHOS) {
 // -----------------------------------------------------
 alert(
     "RESUMO FINAL\n" +
-    "Cadastros realizados: " + totalCadastros + "\n" +
-    "Vinhos com estoque baixo: " + totalEstoqueBaixo + "\n" +
-    "Safra mais antiga: " + nomeMaisAntigo + " (" + safraMaisAntiga + ")"
-);
+    "Cadastros realizados: " +
+    totalCadastros +
+    "\n" +
+    "Vinhos com estoque baixo: " +
+    totalEstoqueBaixo +
+    "\n" +
+    "Safra mais antiga: " +
+    nomeMaisAntigo +
+    " (" +
+    safraMaisAntiga +
+    ")"
+)
