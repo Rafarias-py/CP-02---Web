@@ -3,6 +3,23 @@
 // Vinharia Agnello
 // ===================================================
 
+// -----------------------------------------------------
+// VARIÁVEIS DE CONTROLE E ARMAZENAMENTO
+// -----------------------------------------------------
+const LIMITE_VINHOS = 5;
+let continuar = true;
+let totalCadastros = 0;
+let totalEstoqueBaixo = 0;
+
+// Iniciada como Infinity para a primeira safra ser sempre a mais antiga
+let safraMaisAntiga = Infinity;
+let nomeMaisAntigo = "";
+
+// Variáveis para armazenar os vinhos individualmente
+let nome1, nome2, nome3, nome4, nome5;
+let safra1, safra2, safra3, safra4, safra5;
+let quant1, quant2, quant3, quant4, quant5;
+
 // ---------------------------------------------------
 // 1. Coleta das informações do vinho usando prompt()
 // ---------------------------------------------------
@@ -47,7 +64,6 @@ function lerNumero(mensagem, minimo, maximo) {
 
 // -----------------------------------------------------
 
-
 // Retorna true se o estoque for menor que 5
 function estoqueBaixo(quantidade) {
     return quantidade < 5;
@@ -55,8 +71,8 @@ function estoqueBaixo(quantidade) {
 
 // Classifica o vinho de acordo com a idade da safra
 function classificarVinho(safra) {
-    let anoAtual = new Date().getFullYear(); // variável local
-    let idade = anoAtual - safra; // variável local
+    let anoAtual = new Date().getFullYear();
+    let idade = anoAtual - safra;
 
     if (idade <= 5) {
         return "jovem";
@@ -92,7 +108,6 @@ function mostrarVinho(nome, safra, quantidade, classificacao, baixo) {
 
 // Repete enquanto o usuário quiser cadastrar e houver espaço
 while (continuar && totalCadastros < LIMITE_VINHOS) {
-    // Variáveis locais deste bloco (existem só dentro do laço)
     let nome = lerTexto("Nome do vinho:");
     let safra = lerNumero("Safra (ano):", 1900, new Date().getFullYear());
     let quant = lerNumero("Quantidade em estoque:", 0, 100000);
@@ -163,4 +178,4 @@ alert(
     " (" +
     safraMaisAntiga +
     ")"
-)
+);

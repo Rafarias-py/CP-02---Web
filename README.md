@@ -15,5 +15,5 @@ Sistema de cadastro e análise de vinhos artesanais desenvolvido para o Checkpoi
 
 ## Links
 
-- Repositório GitHub: 
-- GitHub Pages: 
+- Repositório GitHub: https://github.com/Rafarias-py/CP-02---Web
+- GitHub Pages: https://rafarias-py.github.io/CP-02---Web/
